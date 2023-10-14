@@ -2,6 +2,10 @@ header {
   text-align: center;
 }
 
+body {
+  background-color: gray;
+}
+
 nav {
   display: flex;
     align-items: center;
@@ -13,7 +17,7 @@ nav {
 nav > ul {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   padding: 0 0;
 }
 
