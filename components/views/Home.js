@@ -34,11 +34,14 @@ export default state => {
         src="${imgStore}"
         id="imgHolder"
         alt=""
-        height="200px"
-        width="200px"
+        height="400px"
+        width="800px"
       />
 
-      <div id="userList"></div>
+      <div id="userList">
+        <h3>History:</h3>
+
+      </div>
 
       <h3>
         The weather in ${state.weather.city} is ${state.weather.description}.
