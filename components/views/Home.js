@@ -40,7 +40,6 @@ export default state => {
 
       <div id="userList">
         <h3>History:</h3>
-
       </div>
 
       <h3>
