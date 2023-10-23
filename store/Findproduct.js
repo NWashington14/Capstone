@@ -1,4 +1,5 @@
 export default {
   header: "Find Product",
-  view: "Findproduct"
+  view: "Findproduct",
+  products: {}
 };

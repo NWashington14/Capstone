@@ -13,15 +13,43 @@ function render(state = store.Home) {
     ${Main(state)}
     ${Footer()}
   `;
-  afterRender();
+  afterRender(state);
   router.updatePageLinks();
 }
 
-function afterRender() {
+function afterRender(state) {
   // add menu toggle to bars icon in nav bar
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
+
+  if (state.view === "Home" || state.view === "Findproduct") {
+    document
+      .querySelector("#search-product")
+      .addEventListener("submit", event => {
+        event.preventDefault();
+
+        const inputList = event.target.elements;
+        console.log("Input List: ", inputList.txtFind.value);
+        let query = inputList.txtFind.value;
+        axios
+          .get(`${process.env.MONEY_SEARCH_API}/products?item=${query}`)
+          .then(response => {
+            console.log("response: ", response);
+            store.Findproduct.products = response.data;
+            router.navigate("/Findproduct");
+          });
+        // axios
+        //   .post(`${process.env.ROOTINE_API}/rewards`, requestData)
+        //   .then(response => {
+        //     store.Rewards.rewards.push(response.data);
+        //     router.navigate("/Rewards");
+        //   })
+        //   .catch(error => {
+        //     console.log("Error: ", error);
+        //   });
+      });
+  }
 }
 
 router.hooks({
@@ -32,34 +60,62 @@ router.hooks({
         : "Home";
     switch (view) {
       case "Home":
+        // axios
+        //   .get(
+        //     `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
+        //   )
+        //   .then(response => {
+        //     const kelvinToFahrenheit = kelvinTemp =>
+        //       Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+        //     store.Home.weather = {
+        //       city: response.data.name,
+        //       temp: kelvinToFahrenheit(response.data.main.temp),
+        //       feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
+        //       description: response.data.weather[0].main
+        //     };
+        //     done();
+        //   })
+        //   .catch(err => {
+        //     console.log(err);
+        //     done();
+        //   });
+        // axios
+        //   .get(`${process.env.MONEY_SEARCH_API}/products`)
+        //   .then(response => {
+        //     console.log("response: ", response);
+        //     store.Home.recent = response.data;
+        //     done();
+        //   })
+        //   .catch(err => {
+        //     console.log(err);
+        //   });
+
         axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
+          .all([
+            axios.get(
+              `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
+            ),
+            axios.get(`${process.env.MONEY_SEARCH_API}/products`)
+          ])
+          .then(
+            axios.spread((weatherRes, moneyRes) => {
+              const kelvinToFahrenheit = kelvinTemp =>
+                Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+              store.Home.weather = {
+                city: weatherRes.data.name,
+                temp: kelvinToFahrenheit(weatherRes.data.main.temp),
+                feelsLike: kelvinToFahrenheit(weatherRes.data.main.feels_like),
+                description: weatherRes.data.weather[0].main
+              };
+              store.Home.recent = moneyRes.data;
+              done();
+            })
           )
-          .then(response => {
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-            store.Home.weather = {
-              city: response.data.name,
-              temp: kelvinToFahrenheit(response.data.main.temp),
-              feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
-              description: response.data.weather[0].main
-            };
+          .catch((weatherErr, moneyErr) => {
+            console.log(
+              `Weather error: ${weatherErr}, Money error: ${moneyErr}`
+            );
             done();
-          })
-          .catch(err => {
-            console.log(err);
-            done();
-          });
-        axios
-          .get(`${process.env.MONEY_SEARCH_API}/products`)
-          .then(response => {
-            console.log("response: ", response);
-            store.Home.recent = response.data;
-            done();
-          })
-          .catch(err => {
-            console.log(err);
           });
 
         break;
