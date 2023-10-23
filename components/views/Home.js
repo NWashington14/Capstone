@@ -10,13 +10,19 @@ export default state => html`
 
   <!-- MAIN -->
   <main class="main">
-    <div class="g-col-12">
-      <label for="txtFind" class="from-label">Search for Product :</label>
-      <input type="txtFind" name="txtFind" id="txtFind" class="from-control" />
-      <button type="button" class="btn btn-info" id="btnSearch">
-        Search
-      </button>
-    </div>
+    <form action="" id="search-product" method="GET">
+      <div class="g-col-12">
+        <label for="txtFind" class="from-label">Search for Product :</label>
+        <input type="text" name="txtFind" id="txtFind" class="from-control" />
+        <input
+          type="submit"
+          name="submit"
+          value="Submit"
+          class="btn btn-info"
+          id="btnSearch"
+        />
+      </div>
+    </form>
     <h2>What is this website about?</h2>
     <p>
       This website is about the best place to get what you want at low price.
@@ -30,12 +36,15 @@ export default state => html`
       <h3>History:</h3>
       <div>
         <ul>
-          ${console.log(state.recent)};
-
-          <li>
-            <strong>${state.recent.brand}</strong
-            ><span><button>X</button></span>
-          </li>
+          ${state.recent.map(item => {
+            console.log(item.item);
+            return html`
+              <li>
+                <strong>${item.item}</strong><span><button>X</button></span>
+              </li>
+            `;
+          })}
+          <!-- ${console.log(state)}; -->
         </ul>
       </div>
     </div>
