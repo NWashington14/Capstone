@@ -51,6 +51,17 @@ router.hooks({
             console.log(err);
             done();
           });
+        axios
+          .get(`${process.env.MONEY_SEARCH_API}/products`)
+          .then(response => {
+            console.log("response: ", response);
+            store.Home.recent = response.data;
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
         break;
       default:
         done();
