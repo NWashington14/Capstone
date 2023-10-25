@@ -38,6 +38,20 @@ router.get("/", async (request, response) => {
   }
 });
 
+// Get a single products by ID
+router.get("/:id", async (request, response) => {
+  try {
+    const data = await Products.findById(request.params.id);
+
+    response.json(data);
+  } catch (error) {
+    // Output error to the console incase it fails to send in response
+    console.log(error);
+
+    return response.status(500).json(error.errors);
+  }
+});
+
 // Delete a products by ID
 router.delete("/:id", async (request, response) => {
   try {
