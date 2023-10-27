@@ -25,7 +25,7 @@ db.once(
   console.log.bind(console, "Successfully opened connection to Mongo!")
 );
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4040;
 
 // app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
