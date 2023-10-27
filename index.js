@@ -13,6 +13,7 @@ function render(state = store.Home) {
     ${Main(state)}
     ${Footer()}
   `;
+  g;
   afterRender(state);
   router.updatePageLinks();
 }
@@ -31,7 +32,7 @@ function afterRender(state) {
 
         const inputList = event.target.elements;
         console.log("Input List: ", inputList.txtFind.value);
-        let query = inputList.txtFind.value;
+        let query = capitalize(inputList.txtFind.value);
         axios
           .get(`${process.env.MONEY_SEARCH_API}/products?item=${query}`)
           .then(response => {
@@ -60,36 +61,6 @@ router.hooks({
         : "Home";
     switch (view) {
       case "Home":
-        // axios
-        //   .get(
-        //     `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
-        //   )
-        //   .then(response => {
-        //     const kelvinToFahrenheit = kelvinTemp =>
-        //       Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-        //     store.Home.weather = {
-        //       city: response.data.name,
-        //       temp: kelvinToFahrenheit(response.data.main.temp),
-        //       feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
-        //       description: response.data.weather[0].main
-        //     };
-        //     done();
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //     done();
-        //   });
-        // axios
-        //   .get(`${process.env.MONEY_SEARCH_API}/products`)
-        //   .then(response => {
-        //     console.log("response: ", response);
-        //     store.Home.recent = response.data;
-        //     done();
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   });
-
         axios
           .all([
             axios.get(
@@ -118,6 +89,18 @@ router.hooks({
             done();
           });
 
+        break;
+      case "Findproducts":
+        axios
+          .get(`${process.env.MONEY_SEARCH_API}/products`)
+          .then(response => {
+            console.log("response: ", response);
+            store.Findproduct.products = response.data;
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+          });
         break;
       default:
         done();

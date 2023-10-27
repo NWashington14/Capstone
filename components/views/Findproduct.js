@@ -17,33 +17,54 @@ export default state => html`
         </button>
       </div>
     </form>
-
-    <div id="userList">
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">item</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Item</td>
-            <td>Place</td>
-            <td>Price</td>
-            <td>Inventory</td>
-          </tr>
-          ${state.products.map(product => {
-            return html`
-              <tr>
-                <td>${product.item}</td>
-                <td>${product.store}</td>
-                <td>${product.price}</td>
-                <td>${product.inventory}</td>
-              </tr>
-            `;
-          })}
-        </tbody>
-      </table>
-    </div>
+    ${!state.products
+      ? html`
+          <div id="userList">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="2">item</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Item</td>
+                  <td>Place</td>
+                  <td>Price</td>
+                  <td>Inventory</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `
+      : html`
+          <div id="userList">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="2">item</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Item</td>
+                  <td>Place</td>
+                  <td>Price</td>
+                  <td>Inventory</td>
+                </tr>
+                ${state.products.map(product => {
+                  return html`
+                    <tr>
+                      <td>${product.item}</td>
+                      <td>${product.store}</td>
+                      <td>${product.price}</td>
+                      <td>${product.inventory}</td>
+                    </tr>
+                  `;
+                })}
+              </tbody>
+            </table>
+          </div>
+        `}
   </main>
 `;
