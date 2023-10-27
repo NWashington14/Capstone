@@ -90,7 +90,7 @@ router.hooks({
           });
 
         break;
-      case "Findproducts":
+      case "Findproduct":
         axios
           .get(`${process.env.MONEY_SEARCH_API}/products`)
           .then(response => {
