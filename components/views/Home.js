@@ -10,7 +10,7 @@ export default state => html`
 
   <!-- MAIN -->
   <main class="main">
-    <form action="" id="search-product" method="GET">
+    <form action="" id="search-product">
       <div class="g-col-12">
         <label for="txtFind" class="from-label">Search for Product :</label>
         <input type="text" name="txtFind" id="txtFind" class="from-control" />
@@ -40,7 +40,7 @@ export default state => html`
             console.log(item.item);
             return html`
               <li>
-                <strong>${item.item}</strong><span><button>X</button></span>
+                <strong>${item.item}</strong><span> <button>X</button></span>
               </li>
             `;
           })}
