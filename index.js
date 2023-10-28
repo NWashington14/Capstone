@@ -13,7 +13,6 @@ function render(state = store.Home) {
     ${Main(state)}
     ${Footer()}
   `;
-  g;
   afterRender(state);
   router.updatePageLinks();
 }
@@ -33,13 +32,15 @@ function afterRender(state) {
         const inputList = event.target.elements;
         console.log("Input List: ", inputList.txtFind.value);
         let query = capitalize(inputList.txtFind.value);
-        axios
-          .get(`${process.env.MONEY_SEARCH_API}/products?item=${query}`)
-          .then(response => {
-            console.log("response: ", response);
-            store.Findproduct.products = response.data;
-            router.navigate("/Findproduct");
-          });
+        store.Findproduct.search = query;
+        router.navigate("/Findproduct");
+        // axios
+        //   .get(`${process.env.MONEY_SEARCH_API}/products?item=${query}`)
+        //   .then(response => {
+        //     console.log("response: ", response);
+        //     store.Findproduct.products = response.data;
+        //     router.navigate("/Findproduct");
+        //   });
         // axios
         //   .post(`${process.env.ROOTINE_API}/rewards`, requestData)
         //   .then(response => {
