@@ -34,11 +34,12 @@ export default state => html`
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Item</td>
-                    <td>Place</td>
-                    <td>Price</td>
-                    <td>Inventory</td>
+                  <tr id="userList_empty">
+                    <td class="emptyClass">Item</td>
+                    <td class="emptyClass">Place</td>
+                    <td class="emptyClass">Brand</td>
+                    <td class="emptyClass">Price</td>
+                    <td class="emptyClass">Inventory</td>
                   </tr>
                 </tbody>
               </table>
@@ -53,21 +54,23 @@ export default state => html`
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Item</td>
-                    <td>Place</td>
-                    <td>Price</td>
-                    <td>Inventory</td>
+                  <tr id="userList_show">
+                    <td class="showClass">Item</td>
+                    <td class="showClass">Place</td>
+                    <td class="showClass">Brand</td>
+                    <td class="showClass">Price</td>
+                    <td class="showClass">Inventory</td>
                   </tr>
                   ${state.products.map(product => {
                     console.log(product);
                     if (product.item === state.search) {
                       return html`
-                        <tr>
-                          <td>${product.item}</td>
-                          <td>${product.store}</td>
-                          <td>${product.price}</td>
-                          <td>${product.inventory}</td>
+                        <tr id="userList_item">
+                          <td class="itemClass">${product.item}</td>
+                          <td class="itemClass">${product.store}</td>
+                          <td class="itemClass">${product.brand}</td>
+                          <td class="itemClass">${product.price}</td>
+                          <td class="itemClass">${product.inventory}</td>
                         </tr>
                       `;
                     }
