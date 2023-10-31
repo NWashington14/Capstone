@@ -1,4 +1,4 @@
-header {
+/* header {
   text-align: center;
 }
 
@@ -9,6 +9,14 @@ body {
   justify-content: center;
   align-items: center;
   height: 171vh;
+}
+
+.full-page {
+  display: flex;
+  flex-direction: column;
+}
+.full-page {
+  display: grid;
 }
 
 nav {
@@ -40,5 +48,107 @@ nav > ul > li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+} */
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* General Resets */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+body,
+html {
+  /* height: 80%;
+  width: 80%; */
+  background: url(components/image/storeBackgrond.jpg) center center no-repeat;
+  background-size: cover;
+  height: 171vh;
+}
+
+body {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+/* Header Styles */
+header {
+  text-align: center;
+}
+
+/* Navigation Styles */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+nav > ul {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+nav > ul > li {
+  list-style-type: none;
+  padding: 0.5rem;
+}
+
+nav > ul > li > a {
+  text-decoration: none;
+}
+
+/* Main Content Styles */
+.main {
+  width: 100%;
+}
+
+#search-product {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.from-control,
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table thead {
+  background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+/* Other Styles */
+.emptyClass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
