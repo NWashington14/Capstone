@@ -1,4 +1,5 @@
 import html from "html-literal";
+// import imgStore from "../image/";
 
 export default state => html`
   <!-- Main -->
