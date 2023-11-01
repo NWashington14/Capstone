@@ -37,3 +37,5 @@ router.get("/", async (request, response) => {
     return response.status(500).json(error.errors);
   }
 });
+
+export default router;
