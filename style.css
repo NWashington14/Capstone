@@ -60,16 +60,14 @@ nav > ul > li {
   box-sizing: border-box;
 } */
 
-body,
-html {
+body {
   /* height: 80%;
   width: 80%; */
   background: url(components/image/storeBackgrond.jpg) center center no-repeat;
   background-size: cover;
-  height: 171vh;
 }
 
-body {
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
