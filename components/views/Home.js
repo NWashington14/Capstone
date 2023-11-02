@@ -40,7 +40,8 @@ export default state => html`
             console.log(item.item);
             return html`
               <li>
-                <strong>${item.item}</strong><span> <button>X</button></span>
+                <strong>${item.item}</strong
+                ><span> <button id="${item._id}">X</button></span>
               </li>
             `;
           })}

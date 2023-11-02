@@ -61,6 +61,12 @@ function afterRender(state) {
         //   });
       });
   }
+  if (state.view === "Home") {
+    document.querySelector("button").addEventListener("click", event => {
+      let buttonID = event.target.id;
+      console.log(buttonID);
+    });
+  }
 }
 
 router.hooks({
@@ -88,6 +94,7 @@ router.hooks({
                 feelsLike: kelvinToFahrenheit(weatherRes.data.main.feels_like),
                 description: weatherRes.data.weather[0].main
               };
+              console.log(moneyRes.data);
               store.Home.recent = moneyRes.data;
               done();
             })
