@@ -32,8 +32,17 @@ function afterRender(state) {
         const inputList = event.target.elements;
         console.log("Input List: ", inputList.txtFind.value);
         let query = capitalize(inputList.txtFind.value);
-        store.Findproduct.search = query;
-        router.navigate("/Findproduct");
+        const requestData = {
+          item: query
+        };
+        axios
+          .post(`${process.env.MONEY_SEARCH_API}/history`, requestData)
+          .then(response => {
+            store.Home.recent = response.data;
+            store.Findproduct.search = query;
+            router.navigate("/Findproduct");
+          });
+
         // axios
         //   .get(`${process.env.MONEY_SEARCH_API}/products?item=${query}`)
         //   .then(response => {
@@ -67,7 +76,7 @@ router.hooks({
             axios.get(
               `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=st%20louis`
             ),
-            axios.get(`${process.env.MONEY_SEARCH_API}/products`)
+            axios.get(`${process.env.MONEY_SEARCH_API}/history`)
           ])
           .then(
             axios.spread((weatherRes, moneyRes) => {

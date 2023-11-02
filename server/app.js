@@ -65,7 +65,7 @@ app.get("/status", (request, response) => {
 });
 
 app.use("/products", products);
-app.use("/history", history);
+app.use("/history", historyList);
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
