@@ -41,7 +41,11 @@ export default state => html`
             return html`
               <li>
                 <strong>${item.item}</strong
-                ><span> <button id="${item._id}">X</button></span>
+                ><span>
+                  <button class="deleteBtn" data-id="${item._id}">
+                    X
+                  </button></span
+                >
               </li>
             `;
           })}

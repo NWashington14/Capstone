@@ -27,6 +27,16 @@ export default state => html`
         ? html`
             <div id="userList">
               <p>Please Enter something.</p>
+              <p>
+                This website is not real time update!! So some product may be
+                gone.
+              </p>
+              <ul id="moreLess">
+                <li>HIGH = 20+ more</li>
+                <li>MID = 10+</li>
+                <li>LOW = 5+</li>
+                <li>NONE = Have not been stock or all out</li>
+              </ul>
               <table>
                 <thead>
                   <tr>
