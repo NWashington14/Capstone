@@ -62,9 +62,23 @@ function afterRender(state) {
       });
   }
   if (state.view === "Home") {
-    document.querySelector("button").addEventListener("click", event => {
-      let buttonID = event.target.id;
-      console.log(buttonID);
+    const deleteButtons = document.querySelectorAll(".deleteBtn");
+    deleteButtons.forEach(deleteButton => {
+      deleteButton.addEventListener("click", event => {
+        let buttonID = event.target.dataset.id;
+        console.log(buttonID);
+
+        axios
+          .delete(`${process.env.MONEY_SEARCH_API}/history/${buttonID}`)
+          .then(response => {
+            console.log(`Deleted post with ID ${buttonID}`);
+            // router.navigate("/home"); Play with later
+            window.location.reload();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      });
     });
   }
 }
