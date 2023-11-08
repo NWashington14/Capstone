@@ -35,7 +35,7 @@ export default state => html`
     <div id="userList">
       <h3>History:</h3>
       <div>
-        <ul>
+        <ul id="historyList">
           ${state.recent.map(item => {
             console.log(item.item);
             return html`

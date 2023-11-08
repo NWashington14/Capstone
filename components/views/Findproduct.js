@@ -40,7 +40,7 @@ export default state => html`
               <table>
                 <thead>
                   <tr>
-                    <th colspan="2">item</th>
+                    <th colspan="2">Search Result</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,7 @@ export default state => html`
               <table>
                 <thead>
                   <tr>
-                    <th colspan="2">item</th>
+                    <th colspan="2">Search Result</th>
                   </tr>
                 </thead>
                 <tbody>

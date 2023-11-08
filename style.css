@@ -92,6 +92,13 @@ p {
   list-style-type: none;
 }
 
+#historyList {
+  border: 5px solid;
+  background-color: darkseagreen;
+  color: white;
+  list-style-type: none;
+}
+
 /* Header Styles */
 header {
   text-align: center;
@@ -144,6 +151,7 @@ nav > ul > li > a {
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: lightblue;
 }
 
 th,
